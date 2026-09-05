@@ -1,5 +1,13 @@
 {
-  "proposed": [],
+  "proposed": [
+    {
+      "id": "wasmer-local-sandboxes-ai-agents",
+      "title": "Wasmer SDK local sandboxes for AI agents",
+      "url": "https://wasmer.io/posts/wasmer-local-sandboxes-for-ai-agents",
+      "date": "2026-09-02",
+      "source": "discovery"
+    }
+  ],
   "built": [
     {
       "id": "2096020381547008327",

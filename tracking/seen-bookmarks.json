@@ -1,5 +1,6 @@
 {
-  "proposed": [
+  "proposed": [],
+  "built": [
     {
       "id": "2096020381547008327",
       "title": "text-to-cad v0.5",
@@ -7,6 +8,5 @@
       "date": "2026-09-04"
     }
   ],
-  "built": [],
   "skipped": []
 }

@@ -1,13 +1,5 @@
 {
-  "proposed": [
-    {
-      "id": "wasmer-local-sandboxes-ai-agents",
-      "title": "Wasmer SDK local sandboxes for AI agents",
-      "url": "https://wasmer.io/posts/wasmer-local-sandboxes-for-ai-agents",
-      "date": "2026-09-02",
-      "source": "discovery"
-    }
-  ],
+  "proposed": [],
   "built": [
     {
       "id": "2096020381547008327",
@@ -21,6 +13,13 @@
       "id": "2095260192187506978",
       "title": "Claude Commerce Agents (anthropics/commerce-agents)",
       "url": "https://x.com/i/trending/2095260192187506978",
+      "date": "2026-09-02",
+      "source": "discovery"
+    },
+    {
+      "id": "wasmer-local-sandboxes-ai-agents",
+      "title": "Wasmer SDK local sandboxes for AI agents",
+      "url": "https://wasmer.io/posts/wasmer-local-sandboxes-for-ai-agents",
       "date": "2026-09-02",
       "source": "discovery"
     }

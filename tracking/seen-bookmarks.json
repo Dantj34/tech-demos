@@ -1,5 +1,13 @@
 {
-  "proposed": [],
+  "proposed": [
+    {
+      "id": "creditcombo-which-card",
+      "title": "CreditCombo / which-card rewards optimizer",
+      "url": "https://github.com/l2ggy/creditcombo",
+      "date": "2026-09-05",
+      "source": "discovery-personal"
+    }
+  ],
   "built": [
     {
       "id": "2096020381547008327",

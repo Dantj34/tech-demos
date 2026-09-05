@@ -1,13 +1,5 @@
 {
-  "proposed": [
-    {
-      "id": "creditcombo-which-card",
-      "title": "CreditCombo / which-card rewards optimizer",
-      "url": "https://github.com/l2ggy/creditcombo",
-      "date": "2026-09-05",
-      "source": "discovery-personal"
-    }
-  ],
+  "proposed": [],
   "built": [
     {
       "id": "2096020381547008327",
@@ -30,6 +22,13 @@
       "url": "https://wasmer.io/posts/wasmer-local-sandboxes-for-ai-agents",
       "date": "2026-09-02",
       "source": "discovery"
+    },
+    {
+      "id": "creditcombo-which-card",
+      "title": "CreditCombo / which-card rewards optimizer",
+      "url": "https://github.com/l2ggy/creditcombo",
+      "date": "2026-09-05",
+      "source": "discovery-personal"
     }
   ]
 }

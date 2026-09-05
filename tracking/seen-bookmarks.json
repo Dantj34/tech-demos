@@ -1,5 +1,13 @@
 {
-  "proposed": [],
+  "proposed": [
+    {
+      "id": "2095260192187506978",
+      "title": "Claude Commerce Agents (anthropics/commerce-agents)",
+      "url": "https://x.com/i/trending/2095260192187506978",
+      "date": "2026-09-02",
+      "source": "discovery"
+    }
+  ],
   "built": [
     {
       "id": "2096020381547008327",

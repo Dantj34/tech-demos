@@ -1,0 +1,16 @@
+{
+  "name": "tech-demos",
+  "user": "ubuntu",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "text-to-cad",
+      "command": "cd apps/text-to-cad && bun run dev",
+      "description": "Runs the text-to-cad demo: Vite client on http://localhost:5173 proxying /api to the Bun API on 127.0.0.1:3001 (build123d Python sidecar)."
+    }
+  ],
+  "ports": [
+    { "name": "text-to-cad client", "port": 5173 },
+    { "name": "text-to-cad api", "port": 3001 }
+  ]
+}

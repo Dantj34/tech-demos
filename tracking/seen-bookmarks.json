@@ -1,18 +1,17 @@
 {
-  "proposed": [
-    {
-      "id": "2099925682726002904",
-      "title": "Jev (TypeSafe System One / RLCD)",
-      "url": "https://x.com/CompleteSkeptic/status/2099925682726002904",
-      "date": "2026-09-17"
-    }
-  ],
+  "proposed": [],
   "built": [
     {
       "id": "2096020381547008327",
       "title": "text-to-cad v0.5",
       "url": "https://x.com/earthtojake/status/2096020381547008327",
       "date": "2026-09-04"
+    },
+    {
+      "id": "2099925682726002904",
+      "title": "Jev (TypeSafe System One / RLCD)",
+      "url": "https://x.com/CompleteSkeptic/status/2099925682726002904",
+      "date": "2026-09-17"
     }
   ],
   "skipped": [

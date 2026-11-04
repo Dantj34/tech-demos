@@ -20,7 +20,13 @@ import {
 } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { SimulatorFrame } from '@/components/simulator-frame'
-import { fetchStatus, fileToImagePayload, generateMachine, type Status } from '@/lib/api'
+import {
+  fetchStatus,
+  fileToImagePayload,
+  generateMachine,
+  type ProviderId,
+  type Status,
+} from '@/lib/api'
 import { MACHINES, type Machine } from '@/lib/machines'
 
 type Viewer =
@@ -43,6 +49,7 @@ export default function App() {
   const [status, setStatus] = useState<Status | null>(null)
   const [viewer, setViewer] = useState<Viewer | null>(null)
   const [prompt, setPrompt] = useState<string>(EXAMPLES[0])
+  const [provider, setProvider] = useState<ProviderId | null>(null)
   const [image, setImage] = useState<File | null>(null)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -51,10 +58,15 @@ export default function App() {
     let cancelled = false
     fetchStatus()
       .then((next) => {
-        if (!cancelled) setStatus(next)
+        if (cancelled) return
+        setStatus(next)
+        setProvider((current) => {
+          if (current && next.providers.some((item) => item.id === current)) return current
+          return next.providers[0]?.id ?? null
+        })
       })
       .catch(() => {
-        if (!cancelled) setStatus({ generateEnabled: false, model: null })
+        if (!cancelled) setStatus({ generateEnabled: false, providers: [] })
       })
     return () => {
       cancelled = true
@@ -66,7 +78,7 @@ export default function App() {
     setError(null)
     try {
       const payload = image ? await fileToImagePayload(image) : undefined
-      const result = await generateMachine(prompt, payload)
+      const result = await generateMachine(prompt, payload, provider ?? undefined)
       setViewer({ kind: 'generated', title: result.title, html: result.html })
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err))
@@ -166,8 +178,8 @@ export default function App() {
               Describe a machine
             </CardTitle>
             <CardDescription>
-              Optional. Server calls Claude with the upstream SKILL.md and shows the HTML in a
-              sandboxed iframe.
+              Optional. Server calls Claude or an OpenAI model with the upstream SKILL.md and shows
+              the HTML in a sandboxed iframe.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -175,11 +187,36 @@ export default function App() {
               <div className="flex gap-2 border border-border bg-muted/40 px-2.5 py-2 text-muted-foreground">
                 <WarningCircleIcon className="mt-0.5 size-4 shrink-0" />
                 <p>
-                  Set <span className="text-foreground">ANTHROPIC_API_KEY</span> on the Bun server
-                  (never a <span className="text-foreground">VITE_</span> var) and restart. The
-                  three bundled machines above do not need a key.
+                  Set <span className="text-foreground">ANTHROPIC_API_KEY</span> and/or{' '}
+                  <span className="text-foreground">OPENAI_API_KEY</span> on the Bun server (never a{' '}
+                  <span className="text-foreground">VITE_</span> var) and restart. The three bundled
+                  machines above do not need a key.
                 </p>
               </div>
+            ) : null}
+            {generateOn && status && status.providers.length > 1 ? (
+              <fieldset className="space-y-1.5">
+                <legend className="text-[11px] text-muted-foreground">Provider</legend>
+                <div className="flex flex-wrap gap-1.5">
+                  {status.providers.map((item) => (
+                    <Button
+                      key={item.id}
+                      type="button"
+                      size="xs"
+                      variant={provider === item.id ? 'default' : 'outline'}
+                      disabled={busy}
+                      onClick={() => setProvider(item.id)}
+                    >
+                      {item.label} · {item.model}
+                    </Button>
+                  ))}
+                </div>
+              </fieldset>
+            ) : null}
+            {generateOn && status && status.providers.length === 1 ? (
+              <p className="text-[11px] text-muted-foreground">
+                Using {status.providers[0]!.label} ({status.providers[0]!.model})
+              </p>
             ) : null}
             <label className="sr-only" htmlFor="prompt">
               Machine description
